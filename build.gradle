@@ -1,0 +1,30 @@
+plugins {
+  id "java"
+}
+
+group "guru.qa"
+version "0.1"
+
+repositories {
+  mavenCentral()
+}
+
+ext.versions = [
+        selenide: "5+",
+        jupiter: "5+"
+]
+
+ext.jupiter = [
+        api: "org.junit.jupiter:junit-jupiter-api:$versions.jupiter",
+        engine: "org.junit.jupiter:junit-jupiter-engine:$versions.jupiter"
+]
+
+dependencies {
+  testImplementation "com.codeborne:selenide:$versions.selenide"
+  testImplementation jupiter.api
+  testRuntimeOnly jupiter.engine
+}
+
+test {
+  useJUnitPlatform()
+}
